@@ -76,6 +76,7 @@ class TrelloTask(Task):
         self.__card.set_closed(completed)
 
     def get_card_labels(self):
+        """ Return card labels """
         return [x.name for x in self.__card.labels] if self.__card.labels else None
 
     @property
