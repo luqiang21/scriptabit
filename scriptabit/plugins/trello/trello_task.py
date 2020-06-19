@@ -75,10 +75,13 @@ class TrelloTask(Task):
         """ Task completed """
         self.__card.set_closed(completed)
 
+    def get_card_labels(self):
+        return [x.name for x in self.__card.labels] if self.__card.labels else None
+
     @property
     def difficulty(self):
         """ Task difficulty """
-        card_labels = [x.name for x in self.__card.labels]
+        card_labels = self.get_card_labels()
         if card_labels:
             for dl in Difficulty:
                 if dl.name in card_labels:
@@ -95,7 +98,7 @@ class TrelloTask(Task):
     @property
     def attribute(self):
         """ Task character attribute """
-        card_labels = [x.name for x in self.__card.labels]
+        card_labels = self.get_card_labels()
         if card_labels:
             for al in CharacterAttribute:
                 if al.name in card_labels:

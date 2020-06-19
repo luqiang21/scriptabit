@@ -58,8 +58,7 @@ class TrelloTaskService(TaskService):
                 # Check whether we can use this card or not based on the board
                 # settings: all cards or only those assigned to the current user
                 use_card = False
-
-                if 'no sync' in [l.name for l in card.labels]:
+                if card.labels and 'no sync' in [l.name for l in card.labels]:
                     use_card = False
                 elif board_defaults.all_cards:
                     use_card = True
